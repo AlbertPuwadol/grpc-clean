@@ -1,2 +1,2 @@
-# test-grpc
-This is my test grpc
+# grpc-clean
+This is my first Clean Architecture gRPC repository
