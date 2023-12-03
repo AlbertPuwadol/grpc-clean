@@ -1,0 +1,52 @@
+syntax = "proto3";
+option go_package = "./proto";
+
+service GRPCCleanService {
+  rpc Hello(Empty) returns (SuccessResponse);
+  rpc Tasks(TasksRequest) returns (TasksResponse);
+  rpc Task1(TaskRequest) returns (Task1Response);
+  rpc Task2(TaskRequest) returns (Task2Response);
+  rpc Task3(TaskRequest) returns (Task3Response);
+}
+
+message SuccessResponse{
+  string response = 1;
+}
+
+message Empty{
+}
+
+message TasksRequest {
+  string text = 1;
+  repeated string tasks = 2;
+}
+
+message TaskRequest {
+  string text = 1;
+}
+
+message Entity {
+  int32 start = 1;
+  int32 end = 2;
+  string entity = 3;
+  string label = 4;
+}
+
+message Task1Response {
+  string processed_text = 1;
+  repeated Entity entities = 2;
+}
+
+message Task2Response {
+  string task2 =1;
+}
+
+message Task3Response {
+  int32 task3 =1;
+}
+
+message TasksResponse {
+  Task1Response task1 = 1;
+  string task2 = 2;
+  int32 task3 = 3;
+}
