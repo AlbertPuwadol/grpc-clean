@@ -27,30 +27,31 @@ func NewHandler(usecase usecase.IUsecase, grpcServer *grpc.Server) {
 }
 
 func (h handler) Hello(ctx context.Context, req *pb.Empty) (*pb.SuccessResponse, error) {
-	return &pb.SuccessResponse{Response: h.usecase.Hello()}, nil
+	return &pb.SuccessResponse{Status: h.usecase.Hello()}, nil
 }
 
 func (h handler) Tasks(ctx context.Context, req *pb.TasksRequest) (*pb.TasksResponse, error) {
 	text := req.GetText()
 	tasks := req.GetTasks()
 
-	var response *pb.TasksResponse
+	response := pb.TasksResponse{}
 
 	for _, task := range tasks {
-		if task == "task1" {
+		switch task {
+		case "task1":
 			task1result := h.usecase.Task1(text)
-			response.Task1.ProcessedText = text
+			response.Task1 = &pb.Task1Response{ProcessedText: task1result.Text}
 			for _, entity := range task1result.Entities {
 				protoentity := &pb.Entity{Start: int32(entity.Start), End: int32(entity.End), Label: entity.Label, Entity: entity.Entity}
 				response.Task1.Entities = append(response.Task1.Entities, protoentity)
 			}
-		} else if task == "task2" {
+		case "task2":
 			response.Task2 = h.usecase.Task2(text)
-		} else if task == "task3" {
+		case "task3":
 			response.Task3 = int32(h.usecase.Task3(text))
 		}
 	}
-	return response, nil
+	return &response, nil
 }
 
 func (h handler) Task1(ctx context.Context, req *pb.TaskRequest) (*pb.Task1Response, error) {
@@ -58,8 +59,8 @@ func (h handler) Task1(ctx context.Context, req *pb.TaskRequest) (*pb.Task1Respo
 
 	var response *pb.Task1Response
 
-	response.ProcessedText = text
 	task1result := h.usecase.Task1(text)
+	response = &pb.Task1Response{ProcessedText: task1result.Text}
 	for _, entity := range task1result.Entities {
 		protoentity := &pb.Entity{Start: int32(entity.Start), End: int32(entity.End), Label: entity.Label, Entity: entity.Entity}
 		response.Entities = append(response.Entities, protoentity)

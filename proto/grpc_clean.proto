@@ -10,7 +10,7 @@ service GRPCCleanService {
 }
 
 message SuccessResponse{
-  string response = 1;
+  string status = 1;
 }
 
 message Empty{
