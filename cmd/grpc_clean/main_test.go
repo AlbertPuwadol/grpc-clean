@@ -28,7 +28,6 @@ func Unary() grpc.UnaryClientInterceptor {
 func TestHello(t *testing.T) {
 	conn, err := grpc.Dial("localhost:5001", grpc.WithTransportCredentials(insecure.NewCredentials()), grpc.WithUnaryInterceptor(Unary()))
 	if err != nil {
-		t.Log(err)
 		t.Fatal("the connection with the server cannot be established")
 	}
 	defer conn.Close()
