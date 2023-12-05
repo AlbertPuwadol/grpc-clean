@@ -54,7 +54,6 @@ func (interceptor *AuthInterceptor) authorize(ctx context.Context, guessMe strin
 		return status.Errorf(codes.Unauthenticated, "access token is invalid: %v", err)
 	}
 
-	log.Println(guessMe, claims.GuessMe)
 	if guessMe == claims.GuessMe {
 		return nil
 	}
