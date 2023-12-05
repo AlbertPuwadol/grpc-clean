@@ -8,6 +8,7 @@ import (
 	"github.com/AlbertPuwadol/grpc-clean/config"
 	handler "github.com/AlbertPuwadol/grpc-clean/pkg/handler/grpc"
 	"github.com/AlbertPuwadol/grpc-clean/pkg/repository"
+	"github.com/AlbertPuwadol/grpc-clean/pkg/service"
 	"github.com/AlbertPuwadol/grpc-clean/pkg/usecase"
 	"google.golang.org/grpc"
 )
@@ -20,7 +21,10 @@ func main() {
 		log.Fatalf("ERROR STARTING THE SERVER : %v", err)
 	}
 
-	grpcServer := grpc.NewServer()
+	jwtManager := service.NewJWTManager(cfg.Secret)
+	interceptor := service.NewAuthInterceptor(jwtManager, cfg.GuessMe)
+
+	grpcServer := grpc.NewServer(grpc.UnaryInterceptor(interceptor.Unary()))
 
 	repository := repository.NewRepository()
 	usecase := usecase.NewUsecase(repository)

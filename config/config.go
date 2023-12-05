@@ -6,7 +6,9 @@ import (
 )
 
 type Config struct {
-	Port int `env:"PORT"`
+	Port    int    `env:"PORT"`
+	GuessMe string `env:"GUESS_ME"`
+	Secret  string `env:"SECRET"`
 }
 
 func NewConfig() Config {

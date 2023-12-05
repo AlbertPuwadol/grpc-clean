@@ -4,6 +4,7 @@ go 1.21.4
 
 require (
 	github.com/caarlos0/env/v7 v7.1.0
+	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/joho/godotenv v1.5.1
 	google.golang.org/grpc v1.59.0
 	google.golang.org/protobuf v1.31.0
