@@ -20,7 +20,7 @@ func (r repository) Hello() string {
 }
 
 func (r repository) Tasks1() []entity.Entity {
-	return []entity.Entity{{Start: 1, End: 2, Entity: "Hospital", Label: "PLACE"}, {Start: 3, End: 10, Entity: "Doctor", Label: "PERSON"}}
+	return []entity.Entity{{Start: 1, End: 2, Entity: "Hospital", Label: "PLACE"}, {Start: 3, End: 10, Entity: "Doctor", Label: "PERSON"}, {Start: 14, End: 20, Entity: "Nurse", Label: "PERSON"}}
 }
 
 func (r repository) Task2() string {
