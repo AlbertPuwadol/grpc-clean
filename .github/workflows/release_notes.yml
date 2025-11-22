@@ -1,0 +1,14 @@
+name: Write Release Notes
+
+on:
+    release:
+        types: [published]
+
+jobs:
+    release-notes:
+        uses: AlbertPuwadol/pr-template/.github/workflows/release-notes.yml@main
+        with:
+            release_tag: ${{ github.ref_name }}
+            repository_name: ${{ github.repository }}
+        secrets:
+            GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
