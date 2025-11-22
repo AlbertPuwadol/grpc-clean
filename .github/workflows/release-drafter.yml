@@ -3,7 +3,7 @@ name: Release Drafter
 on:
     push:
         branches:
-            - master
+            - main
     # pull_request event is required only for autolabeler
     pull_request:
         # Only following types are handled by the action, but one can default to all as well
@@ -18,5 +18,7 @@ permissions:
 jobs:
     update_release_draft:
         uses: AlbertPuwadol/pr-template/.github/workflows/release-drafter.yml@main
+        with:
+            base_branch: main
         secrets:
             GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
