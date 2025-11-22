@@ -11,4 +11,4 @@ jobs:
             release_tag: ${{ github.ref_name }}
             repository_name: ${{ github.repository }}
         secrets:
-            GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+            PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
