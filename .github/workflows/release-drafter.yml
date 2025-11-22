@@ -17,9 +17,7 @@ permissions:
 
 jobs:
     update_release_draft:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: AlbertPuwadol/pr-template/.github/workflows/release-drafter.yml@master
-              with:
-                  base_branch: main
-                  personal_access_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        uses: AlbertPuwadol/pr-template/.github/workflows/release-drafter.yml@master
+        with:
+            base_branch: main
+            personal_access_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}

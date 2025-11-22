@@ -6,11 +6,8 @@ on:
 
 jobs:
     release-notes:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Generate Release Notes
-              uses: AlbertPuwadol/pr-template/.github/actions/release-notes@master
-              with:
-                  release_tag: ${{ github.ref_name }}
-                  repository_name: ${{ github.repository }}
-                  personal_access_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        uses: AlbertPuwadol/pr-template/.github/actions/release-notes@master
+        with:
+            release_tag: ${{ github.ref_name }}
+            repository_name: ${{ github.repository }}
+            personal_access_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
