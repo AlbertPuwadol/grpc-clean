@@ -16,12 +16,12 @@ permissions:
     contents: read
 
 jobs:
-    update_release_draft:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-            - name: Update Release Draft
-              uses: AlbertPuwadol/pr-template/.github/workflows/release-drafter.yml@master
-              with:
-                  base_branch: main
-                  personal_access_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+    calls_update_release_draft:
+        uses: AlbertPuwadol/pr-template/.github/workflows/release-drafter.yml@master
+        with:
+            base_branch: main
+        secrets:
+            PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        permissions:
+            contents: write
+            pull-requests: write
