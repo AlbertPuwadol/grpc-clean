@@ -9,5 +9,5 @@ jobs:
         uses: AlbertPuwadol/pr-template/.github/workflows/release-notes.yml@master
         with:
             release_tag: ${{ github.ref_name }}
-            repository_name: ${{ github.repository.name }}
+            repository_name: ${{ github.repository }}
         secrets: inherit
